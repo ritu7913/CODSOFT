@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+           
+        }
+
+        .calculator {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color:rgb(24, 15, 15);
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 2);
+        }
+
+        .calculator input {
+            width: 92%;
+            height: 50px;
+            padding: 10px;
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: hsl(307, 18%, 10%);
+            background-color:#cccfe0;
+        }
+        .calculator input:hover{
+            background-color: rgb(163, 208, 208);
+
+        }
+
+        .calculator .row {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px;
+           
+        }
+
+        .calculator .row button {
+            width: 23%;
+            padding: 10px;
+            font-size: 20px;
+            font-weight:50px;
+            color: rgb(237, 234, 234);
+            cursor: pointer;
+            background-color: hwb(0 22% 74%);
+            border: 0.2rem solid #c18fa7;
+            border-radius: 5px;
+        }
+        .calculator .row button:hover {
+            background-color: rgb(178, 184, 186);
+            color: black;
+        }
+
+        .calculator .row button:active {
+            background-color: #ccc;
+        }
+        .calculator .row .colorbutton{
+            background-color: rgb(145, 44, 44);
+        }
+     
+       
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" id="result" disabled>
+        <div class="row">
+            <button  onclick="clearResult()">AC</button>
+            <button onclick="delet()" class="operator">DE</button>
+            <button onclick="appendToResult('**')" class="operator">^</button>
+            <button onclick="appendToResult('%')" class="operator">%</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToResult('7')">7</button>
+            <button onclick="appendToResult('8')">8</button>
+            <button onclick="appendToResult('9')">9</button>
+            <button onclick="appendToResult('/')" class="operator">/</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToResult('4')">4</button>
+            <button onclick="appendToResult('5')">5</button>
+            <button onclick="appendToResult('6')">6</button>
+            <button onclick="appendToResult('*')" class="operator">*</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToResult('1')">1</button>
+            <button onclick="appendToResult('2')">2</button>
+            <button onclick="appendToResult('3')">3</button>
+            <button onclick="appendToResult('-')" class="operator">-</button>
+        </div>
+        <div class="row">
+            <button onclick="appendToResult('.')">.</button>
+            <button onclick="appendToResult('0')">0</button>
+            <button onclick="calculateResult('=')" class="colorbutton" class="operator">=</button>
+            <button onclick="appendToResult('+')" id="span" class="operator">+</button>
+        </div>
+    </div>
+
+    <script>
+        function appendToResult(value) {
+            document.getElementById("result").value += value;
+        }
+        function power(){
+
+        }
+
+        function delet() {
+            var input = document.getElementById("result");
+            input.value = input.value.substring(0, input.value.length - 1);
+        }
+
+        function clearResult() {
+            document.getElementById("result").value = "";
+        }
+
+        function calculateResult() {
+            try {
+                const expression = document.getElementById("result").value;
+                const result = eval(expression);
+                document.getElementById("result").value = result;
+            } catch (error) {
+                document.getElementById("result").value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
